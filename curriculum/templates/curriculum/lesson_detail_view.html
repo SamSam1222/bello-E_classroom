@@ -123,6 +123,26 @@
     display: none;
   }
 
+
+  .btn-adjustable {
+    /* default size */
+    font-size: 1rem; /* Adjust the font size */
+    padding: 0.5rem 3rem; /* Adjust the padding */
+  }
+  
+  .btn-adjustable.btn-lg {
+    /* large size */
+    font-size: 1.25rem; /* Adjust the font size */
+    padding: 0.75rem 4rem; /* Adjust the padding */
+  }
+  
+  .btn-adjustable.btn-sm {
+    /* small size */
+    font-size: 0.875rem; /* Adjust the font size */
+    padding: 0.25rem 2rem; /* Adjust the padding */
+  }
+  
+  /* You can define more sizes as needed */
   
 </style>
 
@@ -140,9 +160,6 @@
     </div>
 
 
-
-    <!-- video -->
-    {% comment %} <div class="row d-flex justify-content-center mb-3"> {% endcomment %}
 
     <div style="text-align: center;">
       <video style="max-width: 100%;" controls>
@@ -216,8 +233,7 @@
     </div>
 
 
-
-    <!-- update and delete button -->
+ {% comment %} <!-- update and delete button -->
     <div class="row d-flex justify-content-center mb-3 mt-3">
         {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
         <div class="col-md-6 mb-3 text-center">
@@ -227,7 +243,26 @@
             <a href="{% url 'curriculum:lesson_delete' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug %}" class="btn btn-danger btn-lg mr-4 btn-block" style="font-family: Arial;"> Delete Lesson </a>
         </div>
         {% endif %}
-      </div>
+      </div> 
+ {% endcomment %}
+
+
+ <!-- update and delete button -->
+ <div class="row d-flex justify-content-center mb-3 mt-3">
+  {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
+  <div class="col-md-6 mb-3 text-center">
+    <a href="{% url 'curriculum:lesson_update' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug %}">
+      <button type="button" class="btn btn-warning btn-lg btn-adjustable" style="font-family: Arial;">Update Lesson</button>
+    </a>
+  </div>
+  <div class="col-md-6">
+    <a href="{% url 'curriculum:lesson_delete' standard=lessons.Standard.slug subject=lessons.subject.slug slug=lessons.slug %}">
+      <button type="button" class="btn btn-danger btn-lg btn-adjustable" style="font-family: Arial;">Delete Lesson</button>
+    </a>
+  </div>
+  {% endif %}
+</div>
+
 </section>
 
 <hr class="my-5" style="color:#ff5722;">

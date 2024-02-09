@@ -24,7 +24,7 @@
   .fa-eye {
     position: absolute;
     top: 60%;
-    right: 4%;
+    right: 9%;
     cursor: pointer;
     color: black;
   }
@@ -135,29 +135,6 @@
 
 
 
-
-      
-
-
-
-  {% comment %} {% if registered %}
-  <div class="text-center mt-4">
-    <p class="grey-text">YOU HAVE SUCCESSFULLY REGISTERED</p>
-  </div>
-    <h1>Thank you for registering</h1>
-  {% else %}
-      <h3>Fill the form: </h3>
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ user_form|crispy }}
-        {{ profile_form|crispy }}
-        <div class="row justify-content-center">
-        <div class="col-md-6">
-        <input type="submit" value="Register" class="btn btn-primary btn-block">
-        </div>
-        </div>
-      </form>
-  {% endif %} {% endcomment %}
 
 
   <script>
