@@ -33,7 +33,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('curriculum:standard_list'))
             else:
                 return HttpResponse("ACCOUNT IS DEACTIVATED")
         else:
@@ -56,7 +56,7 @@ def register(request):
             user.is_superuser = True if user_form.cleaned_data['user_type'] == 'teachers' else False
             user.save()
             login(request, user)  # Automatically log in the user after registration
-            return redirect('index')
+            return redirect('curriculum:standard_list')
     else:
         user_form = UserForm()
 
