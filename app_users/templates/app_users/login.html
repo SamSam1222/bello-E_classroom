@@ -1,0 +1,129 @@
+{% extends 'riteway.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+
+
+<style>
+
+  @media only screen and (max-width: 600px) {
+    .sub-content{
+     max-width: 330px;
+     width: auto;
+     margin-right:0; 
+     
+    }
+  }
+
+
+
+
+  .fa-eye {
+    position: absolute;
+    top: 85%;
+    right: 8%;
+    cursor: pointer;
+    color: black;
+  }
+  
+</style>
+<br><br>
+
+<section >
+  <br><br>
+<div class="container">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center ">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card bg-dark text-white "   style="border-radius: 1rem; margin:auto;">
+            <div class="card-body text-center">
+  
+              <div class="">
+                <img src="https://i.postimg.cc/tggVcHTR/Adobe-Stock-565290230-modified.png" width="130" height="130" class="center z-depth-0 pol" alt="">
+                <p class="con mb-5 blink90" style="color: white; font-size: 200%; text-align: center; font-weight:900">Hi, Welcome Back</p>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center ">
+                <!-- class column -->
+
+              </div>
+                <form action="" method="POST">
+                  {% csrf_token %}
+
+              <div class="form-group">
+                <div class="col-md-12">
+
+                  <h6   style="color: lightsteelblue; font-weight: bold; font-size: 20px ; text-align: left"><label for="username">🕵🏻‍♂️Username</label></h6>
+                  <input type="text" name="username" style="border: 2px solid cyan" placeholder="Fill in Username Here" class="form-control">
+<br>
+                  <h6  style="color: lightsteelblue; font-weight: bold; font-size: 20px; text-align: left"><label for="password">🔐Password</label></h6>
+                  <input type="password" id="password" name="password" style="border: 2px solid cyan" placeholder="Fill in Password Here" class="form-control">
+                  <i class="fa-solid fa-eye" id="show-password"></i>            
+                   </div>
+                  
+                  <br>
+                  <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                  <br><br>
+
+                  <p style="text-align: left"><a href="" style="color:cyan; background-color:transparent; text-decoration:none"  class=" fw-bold">Forget password?</a></p>
+<br>
+                  <div>
+                    <p class="mb-0">Don't have an account?</p> <p><a href="{% url 'register' %}" class=" fw-bold" style="color:cyan; background-color:transparent; text-decoration:none">Sign Up</a>
+                    </p>
+                  </div>
+                  
+                </div>
+              </div>
+             
+                </form>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+          </div>
+          </div> 
+          </div>
+          
+
+</section>
+
+
+
+<script>
+  const showPassword = document.querySelector ("#show-password");
+  const passwordField = document.querySelector ("#password");
+
+  showPassword.addEventListener("click", function(){
+    this.classList.toggle("fa-eye-slash");
+    const type = passwordField.getAttribute("type")
+    === "password" ? "text" : "password";
+    passwordField.setAttribute("type", type);
+  })
+</script>
+
+
+{%endblock%}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

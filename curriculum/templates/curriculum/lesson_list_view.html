@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{subjects.name}} {% endblock %}
+
+
+{% block content %}
+<style>
+
+
+
+      
+  .food {
+    position: relative;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .food img {vertical-align: middle;}
+  
+  .food .note {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    color: #f1f1f1;
+    width: 100%;
+    padding: 15px;
+  }
+  
+       
+  
+  
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 3px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  
+  
+  
+  
+  
+  .overlay {
+    position: absolute; 
+    background: rgba(57, 57, 57, 0.5);
+  
+    /* center overlay text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  
+
+  .image_wrapper {
+    position: relative;
+  }
+  
+
+  
+  .overlay {
+    position: absolute; 
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+    
+    /* center overlay text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .overlay_2 {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0; */
+    inset: 0;
+  }
+  
+  
+  
+  .overlay h2 {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 500;
+    margin: 0;
+    font-family: cursive;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  .cont {
+    position: relative;
+    width: 100%;
+  }
+  
+  
+  
+  .middle {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .cont:hover .image {
+    opacity: 0.1;
+  }
+  
+  .cont:hover .middle {
+    opacity: 1;
+  }
+  
+  .cont:hover h2,
+  .cont:focus h2{
+    display: none;
+  }
+
+
+</style>
+
+
+
+
+<section id="best-features" class="text-center">
+              <h1 class="mb-3 mt-5 font-weight-bold" style="color:#ff5722; font-family: Georgia;">Dive Deeper</h1>
+              <!-- class row for description-->
+              <div class="row d-flex justify-content-center mb-4">
+                <!-- class column -->
+                <div class="col-md-8 mb-2">
+                  <p class="" style="color: grey; font-family: Georgia; font-size: 20px;">Please kindly select any week of your choice</p>
+                </div>
+              </div>
+
+              <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for lesson in subjects.lessons.all %}
+
+              <div class="col">
+                      <div class="card image_wrapper">
+                        <div class="">
+                        <a style="text-decoration: none;" href=""><img height="350px" src="https://i.postimg.cc/0NwV2cpz/ivan-aleksic-PDRFee-Dni-Ck-unsplash.jpg" class=" image card-img-top " alt="...">
+                        <div class="card-body card overlay overlay_2">
+                          <h3 class="card-title" style="color: #7E3517; font-family: arial black; font-weight:900 ; ">Week-{{lesson.position}}: </h3>
+                          <h5 class="card-title" style="color: white; font-family: Calibri; font-weight:; ">{{lesson.name}}</h5>
+
+                          <br>
+          
+                          <a href="{% url 'curriculum:lesson_detail' slug=lesson.slug subject=subjects.slug standard=lesson.Standard.slug %}" ><button type="button" class="btn btn-primary" style="font-family: Arial;">Get Lectures</button></a>
+               
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                
+            
+          </div>
+          <br>
+          <div class="row d-flex justify-content-center mb-3">
+            {% if user.userprofileinfo.user_type == 'teacher' or user.is_superuser %}
+             <a href="{% url 'curriculum:lesson_create' standard=subjects.standard.slug slug=subjects.slug %}"><button type="button" class="btn btn-success btn-lg btn-bloc" > Add new Lesson </button> </a>
+            {% endif %}
+          </div>
+
+
+</section>
+
+
+
+
+
+
+{%endblock%}
